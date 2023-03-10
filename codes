@@ -1,0 +1,72 @@
+# Öğrenci Sistemi
+
+class Ogrenci:
+    def __init__(self, ad, soyad, numara):
+        self.ad = ad
+        self.soyad = soyad
+        self.numara = numara
+        self.dersler = []
+
+    def dersEkle(self, ders):
+        self.dersler.append(ders)
+
+    def dersSil(self, ders):
+        if ders in self.dersler:
+            self.dersler.remove(ders)
+        else:
+            print("Öğrenci bu derse kayıtlı değil.")
+
+    def dersleriListele(self):
+        print(f"{self.ad} {self.soyad}'in aldığı dersler:")
+        for ders in self.dersler:
+            print(ders)
+
+    def __str__(self):
+        return f"{self.ad} {self.soyad} ({self.numara})"
+
+class Sinif:
+    def __init__(self, ad, ogretmen):
+        self.ad = ad
+        self.ogretmen = ogretmen
+        self.ogrenciler = []
+
+    def ogrenciEkle(self, ogrenci):
+        self.ogrenciler.append(ogrenci)
+
+    def ogrenciSil(self, ogrenci):
+        if ogrenci in self.ogrenciler:
+            self.ogrenciler.remove(ogrenci)
+        else:
+            print("Sınıfta bu öğrenci yok.")
+
+    def ogrencileriListele(self):
+        print(f"{self.ad} sınıfındaki öğrenciler:")
+        for ogrenci in self.ogrenciler:
+            print(ogrenci)
+
+# Örnek Kullanım
+
+# Sınıf oluşturma
+sinif1 = Sinif("9-A", "Fatma Aydın")
+
+# Öğrenci oluşturma
+ogrenci1 = Ogrenci("Ali", "Demir", 123)
+ogrenci2 = Ogrenci("Ayşe", "Yılmaz", 456)
+ogrenci3 = Ogrenci("Mehmet", "Aksu", 789)
+
+# Öğrencileri sınıfa ekleme
+sinif1.ogrenciEkle(ogrenci1)
+sinif1.ogrenciEkle(ogrenci2)
+
+# Ders ekleme
+ogrenci1.dersEkle("Matematik")
+ogrenci1.dersEkle("Fizik")
+ogrenci2.dersEkle("Kimya")
+ogrenci2.dersEkle("Biyoloji")
+
+# Öğrencileri sınıftan silme
+sinif1.ogrenciSil(ogrenci3)  # hata mesajı verir
+sinif1.ogrenciSil(ogrenci2)
+
+# Sınıftaki öğrencileri listeleme
+sinif1.ogrencileriListele()
